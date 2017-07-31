@@ -1,3 +1,4 @@
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
 var albumPicasso = {
      title: 'The Colors',
      artist: 'Pablo Picasso',
@@ -28,6 +29,21 @@ var albumPicasso = {
      ]
  };
 
+ var albumWeitzner = {
+     title: 'Bloc',
+     artist: 'Alexander Weitzner',
+     label: 'Label',
+     year: '2017',
+     albumArtUrl: 'assets/images/album_covers/20.png',
+     songs: [
+         { title: 'HTML', duration: '2:13' },
+         { title: 'CSS', duration: '3:59' },
+         { title: 'JavaScript', duration: '1:40'},
+         { title: 'Git', duration: '3:29' },
+         { title: 'DOM', duration: '1:15'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -45,7 +61,7 @@ var albumPicasso = {
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
+     //var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
      // #2
@@ -65,4 +81,14 @@ var albumPicasso = {
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+        var albums = [albumPicasso, albumMarconi, albumWeitzner];
+        var index = 0;
+
+        albumImage.addEventListener("click", function(event) {
+            index++;
+            if (index === albums.length) {
+              index = 0;
+            }
+            setCurrentAlbum(albums[index]);
+        });
  };
