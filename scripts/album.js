@@ -87,12 +87,19 @@ var currentlyPlayingSong = null;
     var findParentByClassName = function(element, targetClass) {
       if (element) {
         var currentParent = element.parentElement;
+
+        //Check to see if parent exists
+        if (currentParent.parentElement === null) {
+          console.log('No Parent Found');
+          return null;
+        }
         //Current Parent class name is not equal to target class and it is not null
         while (currentParent.className !== targetClass && currentParent.className !== null) {
             currentParent = currentParent.parentElement;
         }
         // return new value
-        return currentParent;
+        //return currentParent;
+        return currentParent === null ? console.log('No parent found with that class name') : currentParent;
       }
     };
 
